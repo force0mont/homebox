@@ -9,7 +9,7 @@
 
 Homebox is a self-hosted home inventory and organization system built for the home user. It allows you to track your belongings, manage locations, and keep notes on items in your home.
 
-> **Personal fork notes:** I'm running this on a Raspberry Pi 4 with a 32 GB SD card. I've bumped the default max upload size to 25 MB to better handle photos taken on modern smartphones.
+> **Personal fork notes:** I'm running this on a Raspberry Pi 4 with a 32 GB SD card. I've bumped the default max upload size to 25 MB to better handle photos taken on modern smartphones. I've also disabled open registration by default since this is a single-household instance.
 
 ## Features
 
@@ -81,6 +81,7 @@ services:
       - HBOX_LOG_LEVEL=info
       - HBOX_LOG_FORMAT=text
       - HBOX_WEB_MAX_UPLOAD_SIZE=25
+      - HBOX_OPTIONS_ALLOW_REGISTRATION=false
 volumes:
   homebox-data:
 ```
@@ -97,7 +98,7 @@ Homebox is configured via environment variables:
 | `HBOX_WEB_HOST` | `` | Host to bind to |
 | `HBOX_WEB_MAX_UPLOAD_SIZE` | `25` | Max upload size in MB (increased from upstream default of 10) |
 | `HBOX_STORAGE_DATA` | `./data` | Path to data directory |
-| `HBOX_OPTIONS_ALLOW_REGISTRATION` | `true` | Allow new user registration |
+| `HBOX_OPTIONS_ALLOW_REGISTRATION` | `false` | Allow new user registration (set to `true` if you need to add users) |
 
 ## Contributing
 
@@ -106,9 +107,4 @@ Contributions are welcome! Please read our [contributing guidelines](.github/AGE
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feat/amazing-feature`)
 3. Commit your changes (`git commit -m 'feat: add amazing feature'`)
-4. Push to the branch (`git push origin feat/amazing-feature`)
-5. Open a Pull Request
-
-## License
-
-This project is licensed under the AGPL-3.0 License — see the [LICENSE](LICENSE) file for details.
+4. Push to the branch (`git pu

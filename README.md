@@ -9,7 +9,7 @@
 
 Homebox is a self-hosted home inventory and organization system built for the home user. It allows you to track your belongings, manage locations, and keep notes on items in your home.
 
-> **Personal fork notes:** I'm running this on a Raspberry Pi 4 with a 32 GB SD card. I've bumped the default max upload size to 25 MB to better handle photos taken on modern smartphones. I've also disabled open registration by default since this is a single-household instance.
+> **Personal fork notes:** I'm running this on a Raspberry Pi 4 with a 32 GB SD card. I've bumped the default max upload size to 25 MB to better handle photos taken on modern smartphones. I've also disabled open registration by default since this is a single-household instance. Backups run nightly via a cron job that tarballs `/data` to an external USB drive.
 
 ## Features
 
@@ -82,6 +82,7 @@ services:
       - HBOX_LOG_FORMAT=text
       - HBOX_WEB_MAX_UPLOAD_SIZE=25
       - HBOX_OPTIONS_ALLOW_REGISTRATION=false
+    restart: unless-stopped
 volumes:
   homebox-data:
 ```
@@ -104,7 +105,4 @@ Homebox is configured via environment variables:
 
 Contributions are welcome! Please read our [contributing guidelines](.github/AGENTS.md) before submitting a pull request.
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feat/amazing-feature`)
-3. Commit your changes (`git commit -m 'feat: add amazing feature'`)
-4. Push to the branch (`git pu
+1. Fork the

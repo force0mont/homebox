@@ -9,7 +9,7 @@
 
 Homebox is a self-hosted home inventory and organization system built for the home user. It allows you to track your belongings, manage locations, and keep notes on items in your home.
 
-> **Personal fork notes:** I'm running this on a Raspberry Pi 4 with a 32 GB SD card. I've bumped the default max upload size to 25 MB to better handle photos taken on modern smartphones. I've also disabled open registration by default since this is a single-household instance. Backups run nightly via a cron job that tarballs `/data` to an external USB drive.
+> **Personal fork notes:** I'm running this on a Raspberry Pi 4 with a 32 GB SD card. I've bumped the default max upload size to 25 MB to better handle photos taken on modern smartphones. I've also disabled open registration by default since this is a single-household instance. Backups run nightly via a cron job that tarballs `/data` to an external USB drive. Session timeout is set to 720 hours (30 days) so I'm not constantly re-logging in from my phone.
 
 ## Features
 
@@ -82,6 +82,7 @@ services:
       - HBOX_LOG_FORMAT=text
       - HBOX_WEB_MAX_UPLOAD_SIZE=25
       - HBOX_OPTIONS_ALLOW_REGISTRATION=false
+      - HBOX_OPTIONS_SESSION_TIMEOUT=720
     restart: unless-stopped
 volumes:
   homebox-data:
@@ -100,9 +101,8 @@ Homebox is configured via environment variables:
 | `HBOX_WEB_MAX_UPLOAD_SIZE` | `25` | Max upload size in MB (increased from upstream default of 10) |
 | `HBOX_STORAGE_DATA` | `./data` | Path to data directory |
 | `HBOX_OPTIONS_ALLOW_REGISTRATION` | `false` | Allow new user registration (set to `true` if you need to add users) |
+| `HBOX_OPTIONS_SESSION_TIMEOUT` | `720` | Session timeout in hours (30 days; upstream default is 48) |
 
 ## Contributing
 
-Contributions are welcome! Please read our [contributing guidelines](.github/AGENTS.md) before submitting a pull request.
-
-1. Fork the
+Contributions are welco

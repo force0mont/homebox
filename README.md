@@ -9,6 +9,8 @@
 
 Homebox is a self-hosted home inventory and organization system built for the home user. It allows you to track your belongings, manage locations, and keep notes on items in your home.
 
+> **Personal fork notes:** I'm running this on a Raspberry Pi 4 with a 32 GB SD card. I've bumped the default max upload size to 25 MB to better handle photos taken on modern smartphones.
+
 ## Features
 
 - 📦 Track items across multiple locations
@@ -78,7 +80,7 @@ services:
     environment:
       - HBOX_LOG_LEVEL=info
       - HBOX_LOG_FORMAT=text
-      - HBOX_WEB_MAX_UPLOAD_SIZE=10
+      - HBOX_WEB_MAX_UPLOAD_SIZE=25
 volumes:
   homebox-data:
 ```
@@ -93,7 +95,7 @@ Homebox is configured via environment variables:
 | `HBOX_LOG_FORMAT` | `text` | Log format (text, json) |
 | `HBOX_WEB_PORT` | `7745` | HTTP port to listen on |
 | `HBOX_WEB_HOST` | `` | Host to bind to |
-| `HBOX_WEB_MAX_UPLOAD_SIZE` | `10` | Max upload size in MB |
+| `HBOX_WEB_MAX_UPLOAD_SIZE` | `25` | Max upload size in MB (increased from upstream default of 10) |
 | `HBOX_STORAGE_DATA` | `./data` | Path to data directory |
 | `HBOX_OPTIONS_ALLOW_REGISTRATION` | `true` | Allow new user registration |
 
